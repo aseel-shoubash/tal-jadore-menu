@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>تل جادور · Tal J'adore</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;1,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --beige:#EAE0C8;
+  --beige-2:#DFCFA6;
+  --sand:#D3BD8E;
+  --maroon:#8E1F2B;
+  --maroon-2:#6E1520;
+  --ink:#33231B;
+  --clay:#E08A28;
+  --teal:#2FA894;
+  --cobalt:#1C6BA4;
+  --line:rgba(142,31,43,.22);
+  --f-display:"Amiri", serif;
+  --f-body:"Tajawal", system-ui, sans-serif;
+  --f-latin:"Cormorant Garamond", Georgia, serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--beige);color:var(--ink);
+  font-family:var(--f-body);font-weight:300;line-height:1.8;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;position:relative;
+}
+img,svg{max-width:100%}
+::selection{background:var(--maroon);color:#fff}
+
+/* ===== زخرفة تراثية ثابتة خفيفة الحركة خلف كامل الصفحة ===== */
+#heritageBg{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;opacity:.5}
+#heritageBg svg{position:absolute;top:0;width:220%;height:100%;animation:driftBg 90s linear infinite}
+@keyframes driftBg{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.mote{position:fixed;z-index:0;border-radius:50%;background:radial-gradient(circle,#C89B54,rgba(200,155,84,0));
+  pointer-events:none;animation:moteUp linear infinite}
+@keyframes moteUp{0%{transform:translateY(0) translateX(0);opacity:0}
+  10%{opacity:.55}90%{opacity:.35}100%{transform:translateY(-100vh) translateX(24px);opacity:0}}
+header,.hero,main,footer,.modal{position:relative;z-index:1}
+
+header{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  gap:1rem;padding:.6rem clamp(1rem,4vw,2.6rem);
+  background:rgba(243,232,214,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header .mark{display:flex;align-items:center;gap:.55rem;font-family:var(--f-display);
+  font-size:1.1rem;color:var(--maroon)}
+header .mark svg{width:24px;height:32px}
+header nav{display:flex;gap:.3rem;flex-wrap:wrap}
+header nav a{font-size:.86rem;text-decoration:none;color:rgba(51,35,27,.75);
+  padding:.3rem .75rem;border-radius:999px;transition:.25s;cursor:pointer}
+header nav a:hover{background:var(--maroon);color:#fff}
+@media(max-width:700px){header nav a{font-size:.78rem;padding:.25rem .55rem}}
+
+.hero{position:relative;text-align:center;padding:clamp(2rem,6vw,4rem) 1rem clamp(3rem,6vw,4.5rem);
+  background:
+   radial-gradient(90% 70% at 50% 0%, #F4EBD4, transparent 70%),
+   linear-gradient(to bottom, var(--beige), var(--beige-2));
+  overflow:hidden}
+.hero .scene{width:min(660px,100%);margin-inline:auto;display:block}
+.hero .sh{opacity:0;animation:pop .5s forwards}
+@keyframes pop{from{opacity:0;transform:scale(.75)}to{opacity:1;transform:scale(1)}}
+.hero h1{font-family:var(--f-display);font-weight:700;color:var(--maroon);
+  font-size:clamp(2.6rem,9vw,5rem);margin:.6rem 0 0;line-height:1}
+.hero .latin{font-family:var(--f-latin);font-style:italic;letter-spacing:.34em;
+  color:rgba(51,35,27,.6);font-size:clamp(.95rem,3vw,1.3rem);margin:.2rem 0 1.2rem}
+.hero .where{display:inline-block;font-size:.8rem;letter-spacing:.1em;color:var(--maroon);
+  border:1px solid var(--line);border-radius:999px;padding:.35rem 1rem;background:rgba(255,255,255,.45)}
+
+main{padding:clamp(2.5rem,6vw,4rem) clamp(1rem,5vw,3rem) 0;max-width:82rem;margin-inline:auto}
+.tabs{display:flex;gap:.45rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.4rem}
+.tab{cursor:pointer;font-family:var(--f-body);font-size:.92rem;padding:.5rem 1.15rem;
+  border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--maroon);transition:.25s}
+.tab:hover{background:rgba(142,31,43,.08)}
+.tab[aria-selected="true"]{background:var(--maroon);color:#fff;border-color:var(--maroon)}
+.grid{display:grid;gap:1.1rem;grid-template-columns:repeat(auto-fill,minmax(210px,1fr))}
+.card{position:relative;cursor:pointer;text-align:center;background:#FBF4E7;
+  border:1px solid var(--line);border-radius:16px;padding:0 0 1.1rem;overflow:hidden;
+  transition:transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s;
+  animation:up .45s both}
+@keyframes up{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.card:hover{transform:translateY(-6px);box-shadow:0 18px 30px -22px rgba(51,35,27,.7)}
+.card:focus-visible{outline:2px solid var(--maroon);outline-offset:3px}
+.card .art{width:100%;display:block;aspect-ratio:4/5}
+.card h4{font-family:var(--f-display);font-size:1.15rem;margin:.75rem .8rem .15rem;color:var(--ink);line-height:1.3}
+.card p{font-size:.78rem;color:rgba(51,35,27,.6);margin:0 .8rem .55rem;min-height:2.3em}
+.price{font-family:var(--f-latin);font-size:1.28rem;color:var(--maroon)}
+.price small{font-family:var(--f-body);font-size:.62rem;letter-spacing:.1em;opacity:.7}
+.tag{position:absolute;top:.6rem;inset-inline-start:.6rem;z-index:2;font-size:.6rem;background:var(--maroon);
+  color:#fff;padding:.15rem .55rem;border-radius:999px}
+.note{max-width:60rem;margin:2.6rem auto 0;text-align:center;font-size:.88rem;
+  color:rgba(51,35,27,.62);border-top:1px solid var(--line);padding-top:1.4rem}
+
+.modal{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:1rem;
+  background:rgba(51,35,27,.55);backdrop-filter:blur(5px);opacity:0;visibility:hidden;transition:.3s}
+.modal.open{opacity:1;visibility:visible}
+.box{position:relative;width:min(680px,100%);max-height:86svh;overflow:auto;background:#FBF4E7;
+  border:1px solid var(--line);border-radius:20px;padding:clamp(1.2rem,4vw,2rem);
+  display:grid;gap:1.4rem;transform:translateY(18px);transition:.35s}
+.modal.open .box{transform:none}
+@media(min-width:640px){.box{grid-template-columns:200px minmax(0,1fr);align-items:center}}
+.box .m-art{border-radius:14px;overflow:hidden}
+.box h3{font-family:var(--f-display);font-size:1.9rem;margin:0 0 .1rem;color:var(--maroon)}
+.box .kind{font-family:var(--f-latin);font-style:italic;letter-spacing:.2em;color:rgba(51,35,27,.55);margin:0 0 .8rem}
+.box .d{margin:0 0 1rem;color:rgba(51,35,27,.8)}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;list-style:none;padding:0;margin:0 0 1rem}
+.chips li{font-size:.76rem;border:1px solid var(--line);border-radius:999px;padding:.25rem .7rem}
+.close{position:absolute;top:.8rem;inset-inline-end:.8rem;width:38px;height:38px;border-radius:50%;
+  border:1px solid var(--line);background:#fff;color:var(--maroon);font-size:1.2rem;cursor:pointer;z-index:3}
+.close:hover{background:var(--maroon);color:#fff}
+
+footer{margin-top:clamp(3rem,7vw,5rem);background:var(--maroon);color:#F6EADA;
+  text-align:center;padding:clamp(2.4rem,6vw,3.6rem) 1rem 2rem}
+footer svg.em{width:74px;margin-bottom:.8rem}
+footer h3{font-family:var(--f-display);font-size:1.8rem;margin:0}
+footer .latin{font-family:var(--f-latin);font-style:italic;letter-spacing:.3em;opacity:.75;margin:.1rem 0 1.4rem}
+footer .c{display:flex;gap:.8rem 2.4rem;justify-content:center;flex-wrap:wrap;font-size:.95rem}
+footer a{color:inherit}
+footer small{display:block;margin-top:1.6rem;opacity:.65;font-size:.76rem}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.01ms !important;transition-duration:.01ms !important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<div id="heritageBg"><svg viewBox="0 0 1600 400" preserveAspectRatio="none" aria-hidden="true"></svg></div>
+<div id="motesLayer" aria-hidden="true"></div>
+
+<header>
+  <span class="mark"><svg viewBox="0 0 120 160" id="m1" aria-hidden="true"></svg> تل جادور</span>
+  <nav id="quick"></nav>
+</header>
+
+<div class="hero">
+  <svg class="scene" viewBox="0 0 660 400" aria-label="شعار تل جادور داخل قوس المكان الحجري" id="scene"></svg>
+  <h1>تل جادور</h1>
+  <p class="latin">Tal J'adore</p>
+  <span class="where">٣ شارع فرح أبو جابر · البلد القديمة · السلط</span>
+</div>
+
+<main>
+  <div class="tabs" id="tabs" role="tablist"></div>
+  <div class="grid" id="grid"></div>
+  <p class="note">خبزنا منزلي، معمول بالخميرة الطبيعية والقمح البلدي · حلوياتنا والمربّى من فواكه بساتين السلط · تتوفّر داخل المكان تشكيلة من المربّى الطبيعي.</p>
+</main>
+
+<footer>
+  <svg class="em" viewBox="0 0 120 160" id="m2" aria-hidden="true"></svg>
+  <h3>تل جادور</h3>
+  <p class="latin">Tal J'adore</p>
+  <div class="c">
+    <span>٣ شارع فرح أبو جابر — البلد القديمة، السلط</span>
+    <a href="tel:+962779303302" dir="ltr">+962 77 930 3302</a>
+  </div>
+  <small>الأسعار بالدينار الأردني</small>
+</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true">
+  <div class="box">
+    <button class="close" id="x" aria-label="إغلاق">×</button>
+    <div class="m-art" id="mArt"></div>
+    <div>
+      <h3 id="mT"></h3>
+      <p class="kind" id="mK"></p>
+      <p class="d" id="mD"></p>
+      <ul class="chips" id="mC"></ul>
+      <div class="price" id="mP"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const P={cream:"#F7EEDD",beige:"#EBD9BB",maroon:"#8E1F2B",clay:"#E08A28",teal:"#2FA894",
+ cobalt:"#1C6BA4",ink:"#33231B",milk:"#FBF3E4",coffee:"#4A2A1B",coffee2:"#6E4126",
+ gold:"#C89B54",rose:"#D96C86",berry:"#9E2B4E",sand:"#DCC7A3"};
+
+function seed(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)}return h>>>0}
+function rng(x){return()=>{x^=x<<13;x^=x>>>17;x^=x<<5;return((x>>>0)%10000)/10000}}
+
+function emblem(anim,inkColor){
+  const ink=inkColor||P.ink,rand=rng(seed("tal jadore"));
+  const cls=anim?' class="sh"':'';let cells="",i=0;
+  const cols=4,rows=6,cw=84/cols,ch=110/rows;
+  const pal=[P.cream,P.cream,P.beige,P.maroon,P.clay,P.teal,P.cobalt];
+  for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){
+    const x=18+c*cw,y=32+r*ch,f=pal[Math.floor(rand()*pal.length)],k=rand();i++;
+    const d=k>.8?`<path d="M${x} ${y+ch} A${cw} ${ch} 0 0 1 ${x+cw} ${y+ch} Z" fill="${f}"/>`
+      :`<rect x="${x}" y="${y}" width="${cw}" height="${ch}" fill="${f}"/>`;
+    cells+=`<g${cls} style="animation-delay:${i*40}ms">${d}<rect x="${x}" y="${y}" width="${cw}" height="${ch}" fill="none" stroke="${ink}" stroke-width="1.4"/></g>`;
+  }
+  const id="cp"+(anim?1:Math.floor(Math.random()*1e6));
+  return `<defs><clipPath id="${id}"><rect x="18" y="18" width="84" height="124" rx="42"/></clipPath></defs>
+  <rect x="18" y="18" width="84" height="124" rx="42" fill="${P.cream}"/>
+  <g clip-path="url(#${id})">${cells}
+   <path d="M42 84 A18 26 0 0 1 60 84 L60 110 L42 110 Z" fill="${P.cream}"/>
+   <path d="M60 84 A18 26 0 0 1 78 84 L78 110 L60 110 Z" fill="${P.cream}"/>
+   <path d="M42 84 A18 26 0 0 1 60 84" fill="none" stroke="${ink}" stroke-width="2"/>
+   <path d="M60 84 A18 26 0 0 1 78 84" fill="none" stroke="${ink}" stroke-width="2"/></g>
+  <circle cx="60" cy="48" r="11" fill="none" stroke="${P.maroon}" stroke-width="5"${anim?' class="sh" style="animation-delay:1s"':''}/>
+  <rect x="18" y="18" width="84" height="124" rx="42" fill="none" stroke="${ink}" stroke-width="3.2"/>`;
+}
+
+function art(it){
+  const rand=rng(seed(it.name)),a=it.colors||[P.clay,P.teal],u=seed(it.name);
+  const id=n=>n+u;
+  let bokeh="";
+  for(let i=0;i<7;i++){
+    const cx=20+rand()*160,cy=20+rand()*120,r=10+rand()*28;
+    const col=["#E9CE9F","#D8B583","#C89B54","#B98A57","#EADDC4"][Math.floor(rand()*5)];
+    bokeh+=`<circle cx="${cx}" cy="${cy}" r="${r}" fill="${col}" opacity="${(.18+rand()*.3).toFixed(2)}"/>`;
+  }
+  const scene=`
+    <rect x="0" y="0" width="200" height="250" fill="url(#${id('bg')})"/>
+    <g filter="url(#${id('blur')})">${bokeh}</g>
+    <rect x="0" y="176" width="200" height="74" fill="url(#${id('tbl')})"/>
+    <rect x="0" y="176" width="200" height="3" fill="#8A6234" opacity=".5"/>`;
+
+  const defs=`
+    <linearGradient id="${id('bg')}" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F6E9D2"/><stop offset="1" stop-color="#E3CDA8"/></linearGradient>
+    <linearGradient id="${id('tbl')}" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9A6E42"/><stop offset="1" stop-color="#6E4A29"/></linearGradient>
+    <linearGradient id="${id('cup')}" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FFFDF8"/><stop offset=".35" stop-color="#FFFFFF"/>
+      <stop offset=".72" stop-color="#EDE2CF"/><stop offset="1" stop-color="#CFC1A9"/></linearGradient>
+    <linearGradient id="${id('liq')}" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="${a[0]}"/><stop offset="1" stop-color="${a[1]}"/></linearGradient>
+    <linearGradient id="${id('gls')}" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".55"/>
+      <stop offset=".3" stop-color="#FFFFFF" stop-opacity=".12"/>
+      <stop offset=".8" stop-color="#6E5A3C" stop-opacity=".14"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity=".4"/></linearGradient>
+    <radialGradient id="${id('vig')}" cx=".5" cy=".45" r=".75">
+      <stop offset=".55" stop-color="#3A2618" stop-opacity="0"/>
+      <stop offset="1" stop-color="#3A2618" stop-opacity=".3"/></radialGradient>
+    <filter id="${id('blur')}" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="7"/></filter>
+    <filter id="${id('soft')}" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="4"/></filter>
+    <clipPath id="${id('fr')}"><rect x="0" y="0" width="200" height="250" rx="16"/></clipPath>`;
+
+  const steam=`<g fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" filter="url(#${id('soft')})">
+    <path d="M84 96 q-8 -16 0 -30 q8 -14 0 -26" opacity=".5">
+      <animate attributeName="opacity" values=".15;.55;.15" dur="3.4s" repeatCount="indefinite"/></path>
+    <path d="M100 92 q-8 -14 0 -26 q8 -13 0 -24" opacity=".45">
+      <animate attributeName="opacity" values=".5;.12;.5" dur="2.8s" repeatCount="indefinite"/></path>
+    <path d="M116 96 q-8 -16 0 -30 q8 -14 0 -26" opacity=".4">
+      <animate attributeName="opacity" values=".18;.5;.18" dur="4.1s" repeatCount="indefinite"/></path></g>`;
+
+  const shadow=(cx,cy,rx,ry)=>`<ellipse cx="${cx}" cy="${cy}" rx="${rx}" ry="${ry}" fill="#3A2A18" opacity=".32" filter="url(#${id('soft')})"/>`;
+
+  let b="";
+  if(it.kind==="hot"){
+    b=`${it.hot===false?"":steam}
+    ${shadow(100,204,60,11)}
+    <ellipse cx="100" cy="200" rx="58" ry="13" fill="#F7F2E8"/>
+    <ellipse cx="100" cy="198" rx="58" ry="13" fill="#FFFFFF"/>
+    <ellipse cx="100" cy="198" rx="40" ry="9" fill="#EDE5D6"/>
+    <path d="M58 146 q0 44 42 44 t42 -44 Z" fill="url(#${id('cup')})"/>
+    <path d="M140 150 q26 2 26 18 t-26 16" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linecap="round"/>
+    <path d="M140 150 q26 2 26 18 t-26 16" fill="none" stroke="#D8CCB4" stroke-width="3" stroke-linecap="round"/>
+    <ellipse cx="100" cy="146" rx="42" ry="12" fill="#FFFFFF"/>
+    <ellipse cx="100" cy="147" rx="37" ry="9.5" fill="url(#${id('liq')})"/>
+    <ellipse cx="100" cy="147" rx="37" ry="9.5" fill="url(#${id('gls')})" opacity=".5"/>
+    ${it.latte?`<g opacity=".8"><ellipse cx="100" cy="147" rx="17" ry="4.6" fill="#FFF7EA"/>
+      <ellipse cx="100" cy="147" rx="8" ry="2.2" fill="#F3E4CC"/></g>`:""}
+    <path d="M62 150 q6 26 20 34" fill="none" stroke="#FFFFFF" stroke-width="4" opacity=".6"/>`;
+  }
+  else if(it.kind==="turkish"){
+    b=`${steam}
+    ${shadow(100,200,52,10)}
+    <ellipse cx="100" cy="196" rx="50" ry="11" fill="#E9D7B2"/>
+    <ellipse cx="100" cy="194" rx="50" ry="11" fill="#F6ECD8"/>
+    <path d="M74 142 q2 44 26 44 t26 -44 Z" fill="url(#${id('cup')})"/>
+    <path d="M126 148 q20 4 18 20 t-20 12" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round"/>
+    <ellipse cx="100" cy="142" rx="26" ry="8" fill="#FFFFFF"/>
+    <ellipse cx="100" cy="143" rx="22" ry="6.2" fill="url(#${id('liq')})"/>
+    <ellipse cx="100" cy="142.4" rx="14" ry="3.4" fill="#C08A55" opacity=".55"/>
+    <path d="M30 186 q-6 -30 10 -46 q14 -14 32 -10 l-4 10 q-16 -4 -24 8 q-10 14 -4 38 Z" fill="#C8952F"/>
+    <path d="M30 186 h44 l-6 12 h-32 Z" fill="#A87824"/>`;
+  }
+  else if(it.kind==="tea"){
+    b=`${steam}
+    ${shadow(100,202,48,10)}
+    <ellipse cx="100" cy="196" rx="46" ry="11" fill="#FFFFFF"/>
+    <path d="M70 124 q4 66 30 66 t30 -66 Z" fill="url(#${id('liq')})"/>
+    <path d="M70 124 q4 66 30 66 t30 -66 Z" fill="url(#${id('gls')})"/>
+    <ellipse cx="100" cy="124" rx="30" ry="9" fill="${a[0]}" opacity=".9"/>
+    <ellipse cx="100" cy="124" rx="30" ry="9" fill="none" stroke="#FFFFFF" stroke-width="3" opacity=".8"/>
+    <path d="M78 136 q4 40 18 48" fill="none" stroke="#FFFFFF" stroke-width="4" opacity=".55"/>
+    <path d="M130 140 q22 8 18 28 t-22 14" fill="none" stroke="#FFFFFF" stroke-width="7" opacity=".85" stroke-linecap="round"/>`;
+  }
+  else if(it.kind==="cold"){
+    let ice="",bub="";
+    for(let i=0;i<4;i++){const x=72+rand()*40,y=112+rand()*44;
+      ice+=`<rect x="${x}" y="${y}" width="22" height="20" rx="5" fill="#FFFFFF" opacity=".42" transform="rotate(${(rand()*40-20).toFixed(0)} ${x+11} ${y+10})"/>`;}
+    for(let i=0;i<6;i++){const cx=74+rand()*50,r=2.4+rand()*3,d=(2.4+rand()*2.6).toFixed(1);
+      bub+=`<circle cx="${cx}" cy="170" r="${r}" fill="#FFFFFF" opacity=".6">
+        <animate attributeName="cy" values="176;108" dur="${d}s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;.7;0" dur="${d}s" repeatCount="indefinite"/></circle>`;}
+    b=`${shadow(100,202,42,9)}
+    <path d="M66 82 h68 l-8 108 a10 10 0 0 1 -10 9 h-32 a10 10 0 0 1 -10 -9 Z" fill="#EFE7D6" opacity=".55"/>
+    <path d="M70 104 h60 l-7 86 a10 10 0 0 1 -10 9 h-26 a10 10 0 0 1 -10 -9 Z" fill="url(#${id('liq')})"/>
+    ${ice}${bub}
+    <rect x="114" y="46" width="9" height="56" rx="4" fill="${P.maroon}" transform="rotate(14 118 74)"/>
+    <path d="M66 82 h68 l-8 108 a10 10 0 0 1 -10 9 h-32 a10 10 0 0 1 -10 -9 Z" fill="url(#${id('gls')})"/>
+    <path d="M66 82 h68 l-8 108 a10 10 0 0 1 -10 9 h-32 a10 10 0 0 1 -10 -9 Z" fill="none" stroke="#FFFFFF" stroke-width="3" opacity=".75"/>
+    <ellipse cx="100" cy="82" rx="34" ry="8" fill="#FFFFFF" opacity=".5"/>
+    <path d="M76 100 q-3 46 6 78" fill="none" stroke="#FFFFFF" stroke-width="5" opacity=".5"/>`;
+  }
+  else if(it.kind==="dessert"){
+    b=`${shadow(100,200,58,11)}
+    <ellipse cx="100" cy="194" rx="62" ry="14" fill="#FFFFFF"/>
+    <ellipse cx="100" cy="192" rx="48" ry="10" fill="#F1E9DA"/>
+    <path d="M56 186 L100 96 L144 186 Z" fill="url(#${id('liq')})"/>
+    <path d="M70 156 L100 96 L130 156 Z" fill="#FFF6E6" opacity=".85"/>
+    <path d="M78 140 L100 96 L122 140 Z" fill="${a[0]}" opacity=".9"/>
+    <path d="M56 186 L100 96 L144 186 Z" fill="none" stroke="#B8905C" stroke-width="2" opacity=".5"/>
+    <path d="M86 100 q14 -12 28 0 q-14 10 -28 0 Z" fill="#FFFDF6"/>
+    <circle cx="100" cy="90" r="9" fill="${it.top||P.maroon}"/>
+    <circle cx="97" cy="87" r="3" fill="#FFFFFF" opacity=".45"/>
+    <path d="M100 82 q9 -12 19 -9" fill="none" stroke="#6B4A2A" stroke-width="3"/>`;
+  }
+  else if(it.kind==="food"){
+    b=`${shadow(100,196,64,11)}
+    <rect x="28" y="160" width="144" height="34" rx="10" fill="#A97947"/>
+    <rect x="28" y="160" width="144" height="10" rx="5" fill="#C08F55"/>
+    <path d="M40 152 q60 -60 120 0 q-60 26 -120 0 Z" fill="#E2B675"/>
+    <path d="M44 146 q56 -50 112 0 q-56 22 -112 0 Z" fill="#F0D3A0"/>
+    <path d="M52 140 q48 -18 96 0 q-48 16 -96 0 Z" fill="${a[0]}"/>
+    <path d="M58 134 q42 -14 84 0 q-42 14 -84 0 Z" fill="${a[1]}"/>
+    <circle cx="78" cy="132" r="5" fill="#FFFFFF" opacity=".5"/>
+    <circle cx="104" cy="128" r="4" fill="#6E8F45"/>
+    <circle cx="126" cy="133" r="4.5" fill="#6E8F45"/>
+    <path d="M40 152 q60 -60 120 0" fill="none" stroke="#B9854B" stroke-width="3"/>
+    <path d="M40 152 q60 26 120 0 v10 q-60 26 -120 0 Z" fill="#E7C089"/>`;
+  }
+  else {
+    b=`${shadow(100,196,44,9)}
+    <path d="M72 100 h56 a12 12 0 0 1 12 12 v56 a20 20 0 0 1 -20 20 h-40 a20 20 0 0 1 -20 -20 v-56 a12 12 0 0 1 12 -12 Z" fill="url(#${id('cup')})"/>
+    <path d="M62 136 h76 v32 a20 20 0 0 1 -20 20 h-36 a20 20 0 0 1 -20 -20 Z" fill="url(#${id('liq')})" opacity=".9"/>
+    <path d="M140 116 q22 6 22 22 t-22 16" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round"/>
+    <ellipse cx="100" cy="100" rx="28" ry="8" fill="#FFFFFF"/>
+    <ellipse cx="100" cy="101" rx="22" ry="5.5" fill="${a[1]}" opacity=".85"/>
+    <path d="M74 112 q-4 36 6 58" fill="none" stroke="#FFFFFF" stroke-width="5" opacity=".55"/>`;
+  }
+
+  return `<svg viewBox="0 0 200 250" role="img" aria-label="${it.name}">
+    <defs>${defs}</defs>
+    <g clip-path="url(#${id('fr')})">${scene}${b}
+      <rect x="0" y="0" width="200" height="250" fill="url(#${id('vig')})"/></g>
+    <rect x="1" y="1" width="198" height="248" rx="16" fill="none" stroke="rgba(142,31,43,.25)" stroke-width="2"/></svg>`;
+}
+
+const MENU=[
+ {cat:"قهوة",kind:"hot",items:[
+  {name:"إسبريسو",price:"2.00",colors:[P.coffee,P.coffee2],desc:"جرعة مركّزة بقشدة بنية.",notes:["بنّ محمّص","٣٠ مل"]},
+  {name:"إسبريسو صغير",price:"1.50",colors:[P.coffee2,P.clay],desc:"رشفة قصيرة وأحلى مذاقاً.",notes:["ريستريتو"]},
+  {name:"أمريكانو",price:"2.75",colors:[P.coffee,P.maroon],desc:"إسبريسو وماء ساخن.",notes:["إسبريسو","ماء ساخن"]},
+  {name:"لاتيه",price:"3.00",colors:[P.milk,P.coffee2],desc:"حليب مخمليّ فوق البنّ.",notes:["إسبريسو","حليب"],latte:1},
+  {name:"كابتشينو",price:"3.00",colors:[P.milk,P.coffee],desc:"بنّ وحليب ورغوة.",notes:["إسبريسو","رغوة حليب"],latte:1},
+  {name:"كورتادو",price:"2.25",colors:[P.clay,P.coffee],desc:"توازن قصير بين البنّ والحليب.",notes:["١:١"]},
+  {name:"فلات وايت",price:"2.50",colors:[P.milk,P.coffee2],desc:"حليب حريري بلا رغوة عالية.",notes:["إسبريسو مزدوج","حليب"],latte:1},
+  {name:"ماكياتو",price:"2.00",colors:[P.coffee,P.milk],desc:"إسبريسو بلمسة رغوة.",notes:["إسبريسو","نقطة حليب"]},
+  {name:"قهوة تركية صغير",price:"1.75",kind:"turkish",colors:[P.coffee,P.maroon],desc:"تُغلى على مهل.",notes:["بنّ ناعم","هيل اختياري"]},
+  {name:"قهوة تركية كبير",price:"2.25",kind:"turkish",colors:[P.coffee2,P.maroon],desc:"فنجان أكبر لجلسة أطول.",notes:["بنّ ناعم"]}]},
+ {cat:"خلطات المكان",kind:"hot",items:[
+  {name:"موكا",price:"3.50",colors:[P.coffee,P.maroon],desc:"شوكولاتة وبنّ وحليب.",notes:["إسبريسو","شوكولاتة","حليب"],latte:1},
+  {name:"ماتشا",price:"3.75",colors:["#8FBF6A",P.teal],desc:"شاي أخضر مخفوق.",notes:["ماتشا","حليب"],latte:1},
+  {name:"موكا بالشوكولاتة البيضاء",price:"3.50",colors:[P.milk,P.clay],desc:"حلاوة كريمية مع البنّ.",notes:["إسبريسو","شوكولاتة بيضاء"],latte:1},
+  {name:"لاتيه إسباني",price:"3.50",colors:["#E7C28A",P.coffee2],desc:"حليب مكثّف محلّى.",notes:["إسبريسو","حليب مكثّف"],latte:1},
+  {name:"ماكياتو بالكراميل",price:"3.50",colors:["#D79A45",P.coffee],desc:"طبقات كراميل وحليب.",notes:["كراميل","حليب"],latte:1},
+  {name:"لاتيه بالكراميل المالح",price:"3.50",colors:["#C98A3C",P.coffee2],desc:"كراميل برشّة ملح.",notes:["كراميل","ملح بحري"],latte:1},
+  {name:"فرابتشينو",price:"3.50",kind:"cold",colors:[P.milk,P.coffee2],desc:"قهوة مثلجة مخفوقة.",notes:["إسبريسو","ثلج"]},
+  {name:"لاتيه ٢٤",price:"4.00",colors:[P.gold,P.coffee],desc:"خلطة المكان الخاصة.",notes:["إسبريسو مزدوج","خلطة تل جادور"],sp:1,latte:1},
+  {name:"لاتيه باربي",price:"3.50",colors:[P.rose,P.milk],desc:"لاتيه ورديّ خاص.",notes:["إسبريسو","نكهة وردية"],sp:1,latte:1},
+  {name:"شوكولاتة ساخنة",price:"2.50",colors:["#7A4523",P.milk],desc:"كوب دافئ.",notes:["كاكاو","حليب"]},
+  {name:"شوكولاتة بلجيكية ساخنة",price:"3.50",colors:["#5A2F18",P.clay],desc:"أغنى وأثقل قواماً.",notes:["شوكولاتة بلجيكية"]}]},
+ {cat:"شاي",kind:"tea",items:[
+  {name:"تشكيلة الشاي الفاخر",price:"2.00",colors:["#B7552A",P.clay],desc:"تشكيلة مميزة من الشاي الفاخر.",notes:["أسود","أخضر","أعشاب"]}]},
+ {cat:"مرطبات",kind:"cold",items:[
+  {name:"سموذي",price:"3.25",colors:[P.rose,P.clay],desc:"فواكه مخفوقة باردة.",notes:["فواكه","ثلج"]},
+  {name:"موهيتو",price:"3.00",colors:["#8FCB7A",P.teal],desc:"ليمون ونعناع وفقاعات.",notes:["ليمون","نعناع","صودا"]},
+  {name:"ليمون وردي",price:"3.00",colors:[P.rose,"#F3B8C4"],desc:"ليمونادة ورديّة.",notes:["ليمون","شراب وردي"]},
+  {name:"مشروب مواسم السلط",price:"3.50",colors:[P.berry,P.clay],desc:"من فواكه بساتين السلط.",notes:["فواكه موسمية"],sp:1},
+  {name:"ريد بول",price:"2.75",colors:[P.cobalt,"#9BC7E4"],desc:"مشروب طاقة مبرّد.",notes:["بارد"]},
+  {name:"مياه غازية",price:"1.75",colors:["#BBD4E2","#E8F1F5"],desc:"فقاعات باردة.",notes:["مياه غازية"]},
+  {name:"شاي مثلج",price:"2.75",colors:["#C98A3C","#E7C28A"],desc:"شاي بارد بلمسة ليمون.",notes:["شاي","ثلج"]}]},
+ {cat:"حلويات",kind:"dessert",items:[
+  {name:"كيكة الباوند بالليمون",price:"3.00",colors:["#F0D98A","#FBF0C9"],desc:"كثيفة بعطر الليمون.",notes:["ليمون","زبدة"],top:"#E4C23F"},
+  {name:"كيكة الجزر",price:"3.00",colors:["#E29A4A","#F6DCBB"],desc:"جزر وقرفة وكريمة.",notes:["جزر","قرفة"],top:P.clay},
+  {name:"تشيز كيك",price:"3.00",colors:[P.milk,"#E3C08A"],desc:"جبنة كريمية على بسكويت.",notes:["جبنة كريمية"],top:P.berry},
+  {name:"تيراميسو",price:"3.00",colors:[P.milk,P.coffee2],desc:"قهوة ومسكربوني وكاكاو.",notes:["قهوة","مسكربوني"],top:P.coffee},
+  {name:"ترايفل بالفواكه",price:"3.00",colors:[P.rose,P.milk],desc:"كيك وكريمة وفواكه.",notes:["كيك","فواكه"],top:P.berry},
+  {name:"حلوى الزبادي بالفواكه",price:"3.50",colors:["#F7F1E5","#CFE3D4"],desc:"زبادي خفيف مع فواكه.",notes:["زبادي","فواكه"],top:P.teal},
+  {name:"مافن كيك",price:"2.00",colors:["#D9A05B","#F0DCC0"],desc:"كعكة صغيرة يومية.",notes:["يومي"],top:P.clay},
+  {name:"حلوى مواسم السلط",price:"3.00",colors:[P.berry,P.clay],desc:"من فواكه البساتين.",notes:["شغل أيدي"],top:P.maroon,sp:1}]},
+ {cat:"قائمة الطعام",kind:"food",items:[
+  {name:"ساندويشة اليوم",price:"3.00",colors:[P.teal,P.cream],desc:"على خبز الساور دو.",notes:["خبز ساور دو","حشوة اليوم"]},
+  {name:"سالمون بالأفوكادو",price:"5.00",colors:["#EE9A7C","#9CC47F"],desc:"سالمون وأفوكادو وأومليت.",notes:["جبنة كريمية","أفوكادو","سالمون","أومليت","كبر","جرجير","خبز ساور دو"]},
+  {name:"تيركي مدخّن بالأومليت",price:"3.00",colors:["#D98E6A","#CFE0B4"],desc:"تيركي وأومليت وجرجير.",notes:["تيركي","أومليت","جرجير","كبر","خبز ساور دو"]},
+  {name:"لبنة بالزعتر",price:"3.00",colors:["#F4F0E2","#7FA35B"],desc:"لبنة بلدية وزعتر وزيت زيتون.",notes:["لبنة بلدية","زعتر بلدي","زيتون","زيت زيتون","خبز ساور دو"]},
+  {name:"جادور",price:"2.50",colors:["#C98A3C",P.maroon],desc:"زبدة فول سوداني ومربّى قراصيا.",notes:["زبدة فول سوداني","مربّى قراصيا طبيعي","خبز ساور دو"],sp:1}]},
+ {cat:"إضافات",kind:"addon",items:[
+  {name:"حليب بأنواعه",price:"0.50",colors:[P.milk,P.cream],desc:"بقري، لوز، أو شوفان.",notes:["اختيار الحليب"]},
+  {name:"إسبريسو إضافي",price:"0.75",colors:[P.coffee,P.coffee2],desc:"جرعة إضافية.",notes:["جرعة"]},
+  {name:"نكهات من اختيارك",price:"0.50",colors:[P.clay,P.rose],desc:"فانيلا، كراميل، أو وردي.",notes:["شراب نكهة"]}]}
+];
+
+const tabs=document.getElementById("tabs"),grid=document.getElementById("grid");
+let cur=0;
+MENU.forEach((s,i)=>{
+  const b=document.createElement("button");
+  b.className="tab";b.type="button";b.role="tab";b.textContent=s.cat;
+  b.setAttribute("aria-selected",i?"false":"true");
+  b.onclick=()=>{cur=i;[...tabs.children].forEach((t,j)=>t.setAttribute("aria-selected",j===i?"true":"false"));paint()};
+  tabs.appendChild(b);
+  const a=document.createElement("a");a.textContent=s.cat;
+  a.onclick=()=>{b.click();tabs.scrollIntoView({block:"start"})};
+  document.getElementById("quick").appendChild(a);
+});
+function paint(){
+  const s=MENU[cur];grid.innerHTML="";
+  s.items.forEach((raw,i)=>{
+    const it={...raw,kind:raw.kind||s.kind,cat:s.cat};
+    const c=document.createElement("article");
+    c.className="card";c.tabIndex=0;c.style.animationDelay=(i*45)+"ms";
+    c.innerHTML=`${it.sp?'<span class="tag">خاص بتل جادور</span>':''}
+      <div class="art">${art(it)}</div><h4>${it.name}</h4>
+      <p>${it.desc}</p><div class="price">${it.price}<small> د.أ</small></div>`;
+    const o=()=>openModal(it);
+    c.onclick=o;c.onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();o()}};
+    grid.appendChild(c);
+  });
+}
+const modal=document.getElementById("modal");
+function openModal(it){
+  document.getElementById("mArt").innerHTML=art(it);
+  document.getElementById("mT").textContent=it.name;
+  document.getElementById("mK").textContent=it.cat;
+  document.getElementById("mD").textContent=it.desc;
+  document.getElementById("mC").innerHTML=(it.notes||[]).map(n=>`<li>${n}</li>`).join("");
+  document.getElementById("mP").innerHTML=it.price+'<small> د.أ</small>';
+  modal.classList.add("open");document.body.style.overflow="hidden";
+  document.getElementById("x").focus();
+}
+function shut(){modal.classList.remove("open");document.body.style.overflow=""}
+document.getElementById("x").onclick=shut;
+modal.onclick=e=>{if(e.target===modal)shut()};
+document.onkeydown=e=>{if(e.key==="Escape")shut()};
+
+document.getElementById("m1").innerHTML=emblem(false);
+document.getElementById("m2").innerHTML=emblem(false,"#5A0F18");
+
+(function scene(){
+  let tiles="";
+  for(let r=0;r<2;r++)for(let c=0;c<16;c++){
+    const s=46,x=c*s-20,y=320+r*s;
+    tiles+=`<g transform="translate(${x},${y}) scale(1,.72)" stroke="#C0A275" fill="none" stroke-width="1.3" opacity=".85">
+      <rect width="${s}" height="${s}"/><path d="M${s/2} 5 L${s-5} ${s/2} L${s/2} ${s-5} L5 ${s/2} Z"/>
+      <circle cx="${s/2}" cy="${s/2}" r="5" fill="#7E97AC" stroke="none" opacity=".8"/>
+      <circle cx="5" cy="5" r="2.4" fill="#8E1F2B" stroke="none"/></g>`;
+  }
+  let stones="";
+  for(let r=0;r<5;r++){const y=150+r*34;
+    for(let c=0;c<14;c++){const w=48,x=c*w+((r%2)?-24:0);
+      stones+=`<rect x="${x}" y="${y}" width="${w}" height="34" fill="none" stroke="#C7A878" stroke-width="1.4" opacity=".7"/>`;}}
+  document.getElementById("scene").innerHTML=`
+  <defs>
+    <linearGradient id="st" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F0E0C4"/><stop offset="1" stop-color="#DFC9A4"/></linearGradient>
+    <clipPath id="wallclip"><rect x="0" y="120" width="660" height="210"/></clipPath>
+  </defs>
+  <rect x="0" y="120" width="660" height="210" fill="url(#st)"/>
+  <g clip-path="url(#wallclip)">${stones}</g>
+  <path d="M60 330 V214 A66 66 0 0 1 192 214 V330 Z" fill="#EFE1C6" stroke="#B8935E" stroke-width="3"/>
+  <path d="M468 330 V214 A66 66 0 0 1 600 214 V330 Z" fill="#EFE1C6" stroke="#B8935E" stroke-width="3"/>
+  <g stroke="#8E1F2B" stroke-width="3" opacity=".55">
+    <path d="M86 300 h80M86 276 h80M492 300 h80M492 276 h80"/></g>
+  <path d="M240 330 V190 A90 90 0 0 1 420 190 V330 Z" fill="#FBF4E7" stroke="#8E1F2B" stroke-width="4"/>
+  <path d="M232 330 V186 A98 98 0 0 1 428 186 V330" fill="none" stroke="#B8935E" stroke-width="3"/>
+  <g transform="translate(270,116) scale(1.2)">${emblem(true)}</g>
+  <rect y="322" width="660" height="78" fill="#EADBBE"/>
+  <g>${tiles}</g>`;
+})();
+
+paint();
+
+/* ===== نمط زخرفة تراثية متكرر خلف الصفحة (أقواس ونجمات هندسية) — حركة انسياب بطيئة جداً ===== */
+(function heritagePattern(){
+  const svg=document.querySelector("#heritageBg svg");
+  const unit=200, count=16; // يتكرر مرتين بالعرض 220%
+  let out="";
+  for(let i=0;i<count;i++){
+    const x=i*unit;
+    out+=`<g transform="translate(${x},0)" stroke="#8E1F2B" fill="none" stroke-width="1.6" opacity=".5">
+      <path d="M20 400 V180 a80 80 0 0 1 160 0 V400"/>
+    </g>
+    <g transform="translate(${x+60},60)" stroke="#C89B54" fill="none" stroke-width="1.3" opacity=".55">
+      <path d="M40 0 L80 40 L40 80 L0 40 Z"/>
+      <path d="M40 14 L66 40 L40 66 L14 40 Z"/>
+    </g>
+    <g transform="translate(${x+140},250)" stroke="#1C6BA4" fill="none" stroke-width="1.3" opacity=".45">
+      <circle cx="20" cy="20" r="18"/><path d="M20 2 L20 38 M2 20 L38 20"/>
+    </g>`;
+  }
+  svg.innerHTML=out;
+})();
+
+/* ===== ذرّات غبار ذهبية خفيفة تطفو للأعلى في كل الصفحة ===== */
+(function motes(){
+  const layer=document.getElementById("motesLayer");
+  const n=14;
+  for(let i=0;i<n;i++){
+    const el=document.createElement("span");
+    el.className="mote";
+    const size=(3+Math.random()*4).toFixed(1);
+    el.style.width=size+"px";el.style.height=size+"px";
+    el.style.left=Math.random()*100+"vw";
+    el.style.bottom="-10px";
+    el.style.animationDuration=(18+Math.random()*22)+"s";
+    el.style.animationDelay=(-Math.random()*30)+"s";
+    layer.appendChild(el);
+  }
+})();
+</script>
+</body>
+</html>
