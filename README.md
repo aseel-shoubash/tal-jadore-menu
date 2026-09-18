@@ -1,1 +1,0 @@
-# tal-jadore-menu
